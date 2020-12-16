@@ -1,0 +1,17 @@
+name: Seichi915Chairs
+version: 1.0.0
+main: net.seichi915.seichi915chairs.Seichi915Chairs
+api-version: "1.13"
+load: POSTWORLD
+authors: [stouma915]
+description: "seichi915Network 椅子プラグイン"
+website: https://www.seichi915.net
+commands: {}
+permissions:
+  seichi915chairs.*:
+    description: Grant all permissions of seichi915Chairs
+    children:
+      seichi915chairs.command.*: true
+  seichi915chairs.command.*:
+    description: Grant all command permissions of seichi915Chairs
+    children: {}
