@@ -10,10 +10,12 @@ class ResitTask extends BukkitRunnable {
   override def run(): Unit =
     Seichi915Chairs.sitDataMap.foreach {
       case (player: Player, sitData: SitData) =>
+        sitData.setSitting(false)
         val previousArrow = sitData.getArrow
         val newArrow = Util.spawnChairsArrowAndGet(previousArrow.getLocation)
         newArrow.addPassenger(player)
         sitData.setArrow(newArrow)
         previousArrow.remove()
+        sitData.setSitting(true)
     }
 }

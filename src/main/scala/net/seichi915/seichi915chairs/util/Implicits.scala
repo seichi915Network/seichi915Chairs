@@ -25,7 +25,9 @@ object Implicits {
       Bukkit.getPluginManager.callEvent(playerChairSitEvent)
       if (playerChairSitEvent.isCancelled) return false
       val arrow = Util.spawnChairsArrowAndGet(sitLocation)
-      val sitData = SitData(block, sitLocation, player.getLocation, arrow)
+      val playerLocation = player.getLocation.clone()
+      val sitData =
+        SitData(sitting = true, block, sitLocation, playerLocation, arrow)
       player.teleport(sitLocation)
       arrow.addPassenger(player)
       Seichi915Chairs.sitDataMap += player -> sitData
@@ -44,6 +46,7 @@ object Implicits {
         Bukkit.getPluginManager.callEvent(playerChairUnsitEvent)
         if (playerChairUnsitEvent.isCancelled) return false
       }
+      sitData.setSitting(false)
       player.leaveVehicle()
       sitData.getArrow.remove()
       player.setSneaking(false)
